@@ -26,9 +26,8 @@
     "widmogrod/zf2-assetic-module": "dev-master"
   },
   "autoload": {
-    "psr-0": {
-      "AsseticBundle": "src"
-    },
-    "classmap": ["ConfigProvider.php"]
+    "psr-4": {
+      "AsseticBundle\\": "src/"
+    }
   }
 }
