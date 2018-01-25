@@ -2,6 +2,8 @@
 
 namespace AsseticModule;
 
+use Zend\Stdlib\ArrayUtils;
+
 class ConfigProvider
 {
     public function __invoke()
@@ -11,8 +13,7 @@ class ConfigProvider
         unset($bundleConfig['service_manager']);
 
         $config = include __DIR__ . '/../config/module.config.php';
-        //$config = array_merge_recursive($bundleConfig, $config);
-        $config = \Zend\Stdlib\ArrayUtils::merge($bundleConfig, $config);
+        $config = ArrayUtils::merge($bundleConfig, $config);
 
         return $config;
     }
