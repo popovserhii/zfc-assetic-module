@@ -11,7 +11,8 @@ class ConfigProvider
         unset($bundleConfig['service_manager']);
 
         $config = include __DIR__ . '/../config/module.config.php';
-        $config = array_merge($bundleConfig, $config);
+        //$config = array_merge_recursive($bundleConfig, $config);
+        $config = \Zend\Stdlib\ArrayUtils::merge($bundleConfig, $config);
 
         return $config;
     }
