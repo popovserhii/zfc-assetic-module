@@ -1,0 +1,34 @@
+{
+  "name": "popovserhii/zfc-assetic-module",
+  "type": "library",
+  "description": "Zend Framework Expressive adapter for ZF2 Assetic Module",
+  "keywords": [
+    "zf-expressive",
+    "assetic",
+    "assets",
+    "resources",
+    "css",
+    "js",
+    "less"
+  ],
+  "homepage": "https://github.com/popovserhii/zfc-assetic-module.git",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Serhii Popov",
+      "email": "popovserhii@gmail.com",
+      "homepage": "https://github.com/popovserhii/zfc-assetic-module.git",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^5.6 || >7.0",
+    "widmogrod/zf2-assetic-module": "dev-master"
+  },
+  "autoload": {
+    "psr-0": {
+      "AsseticBundle": "src"
+    },
+    "classmap": ["ConfigProvider.php"]
+  }
+}
