@@ -1,5 +1,5 @@
 {
-  "name": "popovserhii/zfc-assetic-module",
+  "name": "popov/zfc-assetic-module",
   "type": "library",
   "description": "Zend Framework Expressive adapter for ZF2 Assetic Module",
   "keywords": [
