@@ -5,7 +5,8 @@ namespace AsseticModule;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Interop\Http\Server\MiddlewareInterface;
+//use Interop\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Zend\Expressive\Router\RouteResult;
 
 class AsseticMiddleware implements MiddlewareInterface
@@ -44,11 +45,11 @@ class AsseticMiddleware implements MiddlewareInterface
         $routeResult = $request->getAttribute(RouteResult::class);
         if ($routeResult) {
             $actionName = $request->getAttribute('action', 'index');
-            $moduleName = $request->getAttribute('controller', $request->getAttribute('module', $actionName));
+            $resourceName = $request->getAttribute('controller', $request->getAttribute('resource', $actionName));
 
             $asseticService->setRouteName($routeResult->getMatchedRouteName());
-            $asseticService->setControllerName($actionName);
-            $asseticService->setActionName($moduleName);
+            $asseticService->setControllerName($resourceName);
+            $asseticService->setActionName($actionName);
         }
 
         // Create all objects
