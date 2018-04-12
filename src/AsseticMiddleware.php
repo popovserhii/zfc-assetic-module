@@ -5,9 +5,9 @@ namespace AsseticModule;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-//use Interop\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Zend\Expressive\Router\RouteResult;
+use AsseticBundle\Configuration;
 
 class AsseticMiddleware implements MiddlewareInterface
 {
@@ -41,21 +41,23 @@ class AsseticMiddleware implements MiddlewareInterface
         #    }
         #}
 
-        $asseticService = $this->asseticService;
+        /** @var RouteResult $routeResult */
         $routeResult = $request->getAttribute(RouteResult::class);
+        //if ($routeResult->isSuccess()) {
         if ($routeResult) {
             $actionName = $request->getAttribute('action', 'index');
             $resourceName = $request->getAttribute('controller', $request->getAttribute('resource', $actionName));
+            $routeName = $routeResult->isSuccess() ? $routeResult->getMatchedRouteName() : 'default';
 
-            $asseticService->setRouteName($routeResult->getMatchedRouteName());
-            $asseticService->setControllerName($resourceName);
-            $asseticService->setActionName($actionName);
+            $this->asseticService->setRouteName($routeName);
+            $this->asseticService->setControllerName($resourceName);
+            $this->asseticService->setActionName($actionName);
         }
 
         // Create all objects
-        $asseticService->build();
+        $this->asseticService->build();
 
         // Init assets for modules
-        $asseticService->setupRenderer($this->viewRenderer);
+        $this->asseticService->setupRenderer($this->viewRenderer);
     }
 }
